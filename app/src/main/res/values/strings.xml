@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">I5 Bank Auth</string>
+    <string name="empty_list_text">No records found</string>
+</resources>
