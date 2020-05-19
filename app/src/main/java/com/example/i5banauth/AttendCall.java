@@ -28,7 +28,7 @@ public class AttendCall extends Activity {
 
     public void alertDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("Attend Call ?");
+        dialog.setMessage("Attend Calls?");
         dialog.setTitle("I5 Bank Auth");
         dialog.setPositiveButton("YES",
                 new DialogInterface.OnClickListener() {
