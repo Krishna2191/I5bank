@@ -17,7 +17,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //EditText Name;
     Context context;
-    private DatabaseHandler helper = new DatabaseHandler(this);;
+    private DatabaseHandler helper = new DatabaseHandler(this);
 
     String[] banks = { "SBI", "IOB", "HDFC", "TMB", "ICICI" };
     String Selectedbank;
@@ -66,12 +66,11 @@ code for spinner
             long identity = helper.insertData(Selectedbank);
             if(identity<0)
             {
-                Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+                Toast.makeText( this, "Unsuccessful", Toast.LENGTH_LONG).show();
             } else
             {
                 displayListView();
-                //  Message.message(context,"Successful");
-                Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText( this, "Successful", Toast.LENGTH_LONG).show();
             }
         }
         catch (Exception e) {
@@ -93,50 +92,45 @@ code for spinner
             ListView listView = (ListView) findViewById(R.id.list_view);
 // Assign adapter to ListView
             listView.setAdapter(dataAdapter);
-/*
-        listView.setOnItemClickListener(new OnItemClickListener() {
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView&lt;?&gt; listView, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
 // Get the cursor, positioned to the corresponding row in the result set
                 Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
 // Get the state's capital from this row in the database.
-                String countryCode =
-                        cursor.getString(cursor.getColumnIndexOrThrow("code"));
-                Toast.makeText(getApplicationContext(),
-                        countryCode, Toast.LENGTH_SHORT).show();
+                String bankidsel = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.SNO));
+                Toast.makeText(getApplicationContext(),bankidsel, Toast.LENGTH_SHORT).show();
+                delBank(bankidsel);
 
             }
         });
-
-        EditText myFilter = (EditText) findViewById(R.id.myFilter);
-        myFilter.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                dataAdapter.getFilter().filter(s.toString());
-            }
-        });
-
-        dataAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-            public Cursor runQuery(CharSequence constraint) {
-                return dbHelper.fetchCountriesByName(constraint.toString());
-            }
-        });*/
 
         }
     catch (Exception e) {
         e.printStackTrace();
     }
 
+    }
+
+    public void delBank(String id)
+    {
+
+        try {
+            int bankid  = Integer.parseInt(id);
+            long identity = helper.deleteData(bankid);
+            if(identity<0)
+            {
+                Toast.makeText( this, "Unsuccessful Del", Toast.LENGTH_LONG).show();
+            } else
+            {
+                displayListView();
+                Toast.makeText( this, "Successful Del", Toast.LENGTH_LONG).show();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

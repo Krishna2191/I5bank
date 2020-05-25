@@ -32,6 +32,13 @@ public class DatabaseHandler  {
         return id;
     }
 
+    public int deleteData(int SNO)
+    {
+        SQLiteDatabase db = helper.getWritableDatabase();
+        int id=db.delete(myDbHelper.TABLE_NAME, myDbHelper.SNO+"='"+SNO+"'",null);
+        return id;
+    }
+
     public Cursor fetchData() {
         SQLiteDatabase db = helper.getWritableDatabase();
         String[] columns = new String[] { myDbHelper.SNO, myDbHelper.BANK };
