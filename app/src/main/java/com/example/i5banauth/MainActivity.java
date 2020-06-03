@@ -133,9 +133,9 @@ code for spinner
         });*/
 
         }
-    catch (Exception e) {
-        e.printStackTrace();
-    }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
