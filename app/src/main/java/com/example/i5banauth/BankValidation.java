@@ -32,11 +32,35 @@ public class BankValidation extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_main);
-        bankOption();
+        //bankOption();
+        showDialog();
         //finish();
 
     }
+    public void showDialog() {
 
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        myDialog.setTitle("I5 Bank Auth");
+        myDialog.setMessage("Do want to Authenticate Caller ?");
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        bankOption();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        System.exit(0);
+                        break;
+                }
+
+            }
+        };
+        myDialog.setPositiveButton("Yes", dialogClickListener);
+        myDialog.setNegativeButton("No",dialogClickListener);
+        myDialog.show();
+
+    }
     public void bankOption() {
         final String phoneNumber = getIntent().getStringExtra("PHONE_NUMBER");
         Cursor cursor = helper.fetchData();

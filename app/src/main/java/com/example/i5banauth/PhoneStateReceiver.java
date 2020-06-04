@@ -59,7 +59,8 @@ public class PhoneStateReceiver extends BroadcastReceiver {
             }
             if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
                 Toast.makeText(context, "Call Idle State", Toast.LENGTH_SHORT).show();
-                Global.IS_RUNNING=false;
+
+                System.exit(0);
                 // clearAbortBroadcast();
             }
         } catch (Exception e) {

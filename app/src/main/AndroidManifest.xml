@@ -28,7 +28,14 @@
         </receiver>
         <activity
             android:name="com.example.i5banauth.BankValidation"
-            android:theme="@android:style/Theme.Holo.Dialog">
+
+            android:theme="@android:style/Theme.Translucent"
+
+
+            >
+            <!--
+            android:theme="@android:style/Theme.Holo.Dialog"
+           -->
         </activity>
 
     </application>
